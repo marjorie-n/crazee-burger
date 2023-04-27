@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   //state
@@ -12,7 +13,7 @@ export default function LoginForm() {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
- // affichage
+  // affichage
   return (
     <div>
       <form action="submit" onSubmit={handleSubmit}>
@@ -28,6 +29,11 @@ export default function LoginForm() {
         />
 
         <button type="submit">Accéder à votre espace</button>
+        <Link
+          to="/order"
+        >
+          Vers Order page
+        </Link>
       </form>
     </div>
   );
