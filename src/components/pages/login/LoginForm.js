@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
+import { IoChevronForward } from "react-icons/io5";
 
 // import icons from "react-icons";
 export default function LoginForm() {
@@ -26,22 +27,27 @@ export default function LoginForm() {
         <h2>Connectez-vous</h2>
       </div>
 
-      <div className="input-with-icon">
-        <BsPersonCircle className="icon" />
-        <input
-          type="text"
-          placeholder="Entrez votre prénom"
-          required
-          username={value}
-          onChange={handleChange}
-        />
+      <div>
+        <div className="input-with-icon">
+          <BsPersonCircle className="icon" />
+          <input
+            type="text"
+            placeholder="Entrez votre prénom"
+            required
+            username={value}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button className="button-with-icon">
+          <span>Accéder à mon espace</span>
+          <IoChevronForward className="icon" />
+        </button>
       </div>
-      <button type="submit">Accéder à mon espace</button>
     </LoginFormStyed>
   );
 }
 const LoginFormStyed = styled.div`
-  background-color: green;
   text-align: center;
   max-width: 500px;
   max-width: 400px;
@@ -74,7 +80,7 @@ const LoginFormStyed = styled.div`
     padding: 18px 24px;
     margin: 18px 0;
     .icon {
-      font-size:15px;
+      font-size: 15px;
       margin-right: 8px;
       color: gray;
     }
@@ -87,6 +93,53 @@ const LoginFormStyed = styled.div`
     &::placeholder {
       color: lightgray;
       background-color: white;
+    }
   }
+  .button-with-icon {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
+
+    padding: 18px 24px;
+    border-radius: 5px;
+    background-color: orange;
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+    border: 1px solid orange;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: white;
+      color: orange;
+      border: 1px solid orange;
+      .icon {
+        color: orange;
+      }
+    }
+
+    &:active {
+      background-color: orange;
+      color: white;
+      border: 1px solid orange;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .icon {
+      font-size: 15px;
+      margin-left: 8px;
+      color: white;
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;
