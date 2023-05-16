@@ -4,16 +4,8 @@ export default function TextInput({ username, onChange, Icon, ...extraProps }) {
   // console.log("extraProps:", extraProps);
   return (
     <InputStyled>
-      {/* <BsPersonCircle className="icon" /> */}
       {Icon && Icon}
-      <TextInput
-        type="text"
-        // placeholder={placeholder}
-        // required={required ? true : false}
-        {...extraProps}
-        username={username}
-        onChange={onChange}
-      />
+      <input onChange={onChange} type="text" {...extraProps} />
     </InputStyled>
   );
 }
@@ -30,10 +22,11 @@ const InputStyled = styled.div`
       margin-right: 8px;
       color: gray;
     }
-    TextInput {
+    input {
       border: none;
       font-size: 15px;
       color: black;
+      width: 100%;
     }
 
     &::placeholder {
