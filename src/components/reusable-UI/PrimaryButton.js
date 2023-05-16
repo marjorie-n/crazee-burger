@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../theme";
 
 export default function PrimaryButton({ label, Icon }) {
   return (
@@ -9,43 +10,41 @@ export default function PrimaryButton({ label, Icon }) {
   );
 }
 const PrimaryButtonStyled = styled.button`
-  .button-with-icon {
-    width: 100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    white-space: nowrap;
-    text-decoration: none;
-    line-height: 1;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
 
-    padding: 18px 24px;
-    border-radius: 5px;
-    background-color: orange;
-    color: white;
-    font-size: 15px;
-    font-weight: 800;
-    border: 1px solid orange;
-    cursor: pointer;
+  padding: 18px 24px;
+  border-radius: ${theme.borderRadius.round};
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.white};
+  font-size: ${theme.fonts.size.P0};
+  font-weight: ${theme.fonts.weights.heavy};
+  border: 1px solid ${theme.colors.primary};
+  cursor: pointer;
 
-    &:hover:not(:disabled) {
-      background-color: white;
-      color: orange;
-      border: 1px solid orange;
-      .icon {
-        color: orange;
-      }
+  &:hover:not(:disabled) {
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.primary};
+    border: 1px solid ${theme.colors.primary};
+    .icon {
+      color: ${theme.colors.primary};
     }
+  }
 
-    &:active {
-      background-color: orange;
-      color: white;
-      border: 1px solid orange;
-    }
+  &:active {
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.primary};
+  }
 
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
