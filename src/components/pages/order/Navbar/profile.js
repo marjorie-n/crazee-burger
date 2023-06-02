@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
-import { theme } from "../../../theme/index.js";
+import { theme } from "../../../../theme/index.js";
 
 export default function profile({ username }) {
   return (

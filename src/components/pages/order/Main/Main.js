@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../theme/index.js";
+import { theme } from "../../../../theme/index.js";
 
 export default function Main() {
   return (

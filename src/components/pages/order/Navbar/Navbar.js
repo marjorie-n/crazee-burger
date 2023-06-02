@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import NavbarRightSide from "./NavbarRightSide.js";
+
+import Logo from "../../../reusable-UI/Logo.js";
+
+import { refreshPage } from "../../../../utils/Window.js";
 import NavbarLeftSide from "./NavbarLeftSide.js";
-import Logo from "../../reusable-UI/Logo.js";
-import { theme } from "../../../theme/index.js";
-import { refreshPage } from "../../../utils/Window.js";
+import NavbarRightSide from "./NavbarRightSide.js";
+import { theme } from "../../../../theme/index.js";
 
 export default function Navbar({ username }) {
   return (
