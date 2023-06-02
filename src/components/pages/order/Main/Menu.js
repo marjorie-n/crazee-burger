@@ -1,7 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function Menu() {
-  return <MenuStyled className="menu">Menu</MenuStyled>;
+  const [products, setproducts] = useState([]);
+  return <MenuStyled className="menu"></MenuStyled>;
 }
 const MenuStyled = styled.div`
   background: purple;
