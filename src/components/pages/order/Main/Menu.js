@@ -2,18 +2,20 @@ import { useState } from "react";
 import styled from "styled-components";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme/index.js";
-import Product from "./Product.js";
+import Card from "../../../reusable-UI/Card.js";
+import { formatPrice } from "../../../../utils/maths.js";
 
 export default function Menu() {
-  const [menu, setMenu] = useState(fakeMenu2);
+  const [menu] = useState(fakeMenu2);
   return (
     <MenuStyled className="menu">
-      {menu.map((produit) => {
+      {menu.map(({ id, title, imageSource, price }) => {
         return (
-          <Product
-            title={produit.title}
-            imageSource={produit.imageSource}
-            price={produit.price}
+          <Card
+            key={id}
+            title={title}
+            imageSource={imageSource}
+            leftDescription={formatPrice(price)}
           />
         );
       })}
@@ -22,10 +24,10 @@ export default function Menu() {
 }
 const MenuStyled = styled.div`
   background: ${theme.colors.background_white};
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 `;
