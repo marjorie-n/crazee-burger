@@ -1,16 +1,13 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme/index.js";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function ToastAdmin() {
-  return (
-    <ToastAdminStyled>
-      <ToastContainer className="toaster" bodyClassName="body-toast" />
-    </ToastAdminStyled>
-  );
+  return <ToastAdminStyled className="toaster" bodyClassName="body-toast" />;
 }
-const ToastAdminStyled = styled.div`
+const ToastAdminStyled = styled(ToastContainer)`
 .toaster {
     max-width: 300px;
   }
