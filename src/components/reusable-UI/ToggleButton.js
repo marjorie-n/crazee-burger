@@ -7,9 +7,11 @@ export default function ToggleButton({
   onToggle,
   labelIfChecked = "Fermer",
   labelIfUnchecked = "Ouvrir",
+  colorBackground,
+  colorText,
 }) {
   return (
-    <ToggleButtonStyled>
+    <ToggleButtonStyled colorBackground={colorBackground} colorText={colorText}>
       <input
         type="checkbox"
         className="toggle"
@@ -89,7 +91,7 @@ const ToggleButtonStyled = styled.div`
     }
 
     &.toggle:not(:checked) + label {
-      background-color: ${theme.colors.background_dark};
+      background-color: ${(props) => props.colorBackground};
       /* text-align: right; */
     }
 
@@ -99,7 +101,8 @@ const ToggleButtonStyled = styled.div`
       right: 8px;
       left: auto;
       opacity: 1;
-      color: ${theme.colors.primary};
+      color: ${(props) =>
+        props.colorText ? props.colorText : theme.colors.primary};
       font-weight: ${theme.fonts.weights.bold};
     }
 
