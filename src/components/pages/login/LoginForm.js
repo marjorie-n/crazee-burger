@@ -70,7 +70,7 @@ const LoginFormStyled = styled.form`
   }
 
   .icon {
-    font-size: ${theme.fonts.size.P0};
+    font-size: ${theme.fonts.size.SM};
     margin-left: ${theme.gridUnit}px;
     color: ${theme.colors.white};
     align-items: center;
