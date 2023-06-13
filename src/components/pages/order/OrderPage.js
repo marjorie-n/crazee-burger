@@ -1,20 +1,29 @@
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "./Navbar/Navbar.js";
 import { theme } from "../../../theme/index.js";
 import Main from "./Main/Main.js";
+import { useState } from "react";
+import OrderContext from "../../../context/OrderContext.js";
 
 export default function OrderPage() {
-  const { username } = useParams();
-  console.log(username);
+  const [isModeAdmin, setIsModeAdmin] = useState(true);
+  // const { username } = useParams();
+  // console.log(username);
+
+  const orderContextValue = {
+    isModeAdmin: isModeAdmin,
+    setIsModeAdmin: setIsModeAdmin,
+  };
 
   return (
-    <OrderPageStyled>
-      <div className="container">
-        <Navbar username={username} />
-        <Main />
-      </div>
-    </OrderPageStyled>
+    <OrderContext.Provider value={orderContextValue}>
+      <OrderPageStyled>
+        <div className="container">
+          <Navbar />
+          <Main />
+        </div>
+      </OrderPageStyled>
+    </OrderContext.Provider>
   );
 }
 

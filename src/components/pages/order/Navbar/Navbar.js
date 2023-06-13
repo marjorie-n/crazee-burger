@@ -1,18 +1,16 @@
 import styled from "styled-components";
-
 import Logo from "../../../reusable-UI/Logo.js";
-
 import { refreshPage } from "../../../../utils/Window.js";
 import NavbarLeftSide from "./NavbarLeftSide.js";
 import NavbarRightSide from "./NavbarRightSide.js";
 import { theme } from "../../../../theme/index.js";
 
-export default function Navbar({ username }) {
+export default function Navbar() {
   return (
     <NavbarStyled>
       <Logo className="logo-order-page" onClick={refreshPage} />
       <NavbarLeftSide />
-      <NavbarRightSide username={username} />
+      <NavbarRightSide />
     </NavbarStyled>
   );
 }
