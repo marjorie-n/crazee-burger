@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme/index.js";
+import AdminPanel from "./AdminPanel.js";
+import AdminTabs from "./AdminTabs.js";
 
 export default function Admin() {
-  return <AdminStyled className="admin">Admin</AdminStyled>;
+  return (
+    <AdminStyled className="admin">
+      <AdminTabs />
+      <AdminPanel />
+    </AdminStyled>
+  );
 }
 const AdminStyled = styled.div`
   height: 250px;
