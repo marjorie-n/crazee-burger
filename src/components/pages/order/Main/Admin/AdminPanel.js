@@ -5,8 +5,10 @@ export default function AdminPanel() {
   return <AdminPanelStyled>AdminPanel</AdminPanelStyled>;
 }
 const AdminPanelStyled = styled.div`
-height: 250px;
-background: ${theme.colors.background_white}};
-  border: 1px solid ${theme.colors.greyLight};
+  height: 251px;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  background: ${theme.colors.white};
+  border-top: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
 `;
