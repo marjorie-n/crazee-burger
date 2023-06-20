@@ -5,13 +5,11 @@ import Admin from "./Admin/Admin.js";
 import OrderContext from "../../../../context/OrderContext.js";
 import { useContext } from "react";
 export default function Main() {
-  const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext);
+  const { isModeAdmin } = useContext(OrderContext);
   return (
     <MainStyled className="main">
-      {/* <div className="basket">Basket</div> */}
       <div className="menu-and-admin">
         <Menu />
-        {/* {isModeAdmin ? <Admin /> : null} */}
         {/* conditional rendering */}
         {isModeAdmin && <Admin />}
       </div>
@@ -29,11 +27,6 @@ const MainStyled = styled.div`
 
   display: grid;
   grid-template-columns: 1fr;
-
-  // .basket {
-  //   background: pink;
-  //   border: 1px solid black;
-  // }
   .menu-and-admin {
     position: relative;
     display: grid;
