@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Tab from "../../../../reusable-UI/Tabs";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { theme } from "../../../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
-import { getTabsConfig } from "./getTabsConfig";
+import { tabsConfig } from "./tabsConfig";
+import Tabs from "../../../../reusable-UI/Tabs";
 export default function AdminTabs() {
   const {
     isCollapsed,
@@ -14,31 +14,31 @@ export default function AdminTabs() {
   } = useContext(OrderContext);
 
   const selectTab = (tabSelected) => {
-    setIsCollapsed(false);
-    setCurrentTabSelected(tabSelected);
-
-    // if (tabSelected === "add") {
-    //   setIsAddSelected(true);
-    //   setIsEditSelected(false);
-    // }
-
-    // if (tabSelected === "edit") {
-    //   setIsEditSelected(true);
-    //   setIsAddSelected(false);
-    // }
+    setIsCollapsed(false); // ouvre moi le panel dans tous les cas
+    setCurrentTabSelected(tabSelected); // réactualise l'onglet sélectionné
   };
-  const tabs = getTabsConfig(currentTabSelected);
+
+  // if (tabSelected === "add") {
+  //   setIsAddSelected(true);
+  //   setIsEditSelected(false);
+  // }
+
+  // if (tabSelected === "edit") {
+  //   setIsEditSelected(true);
+  //   setIsAddSelected(false);
+  // }
+  const tabs = tabsConfig;
 
   // affichage
   return (
     <AdminTabsStyled>
-      <Tab
+      <Tabs
         Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
         onClick={() => setIsCollapsed(!isCollapsed)}
         className={isCollapsed ? "is-active" : ""}
       />
       {tabs.map((tab) => (
-        <Tab
+        <Tabs
           key={tab.index}
           label={tab.label}
           Icon={tab.Icon}
@@ -51,7 +51,6 @@ export default function AdminTabs() {
 }
 
 const AdminTabsStyled = styled.div`
-  /* border: 2px solid red; */
   display: flex;
 
   .is-active {
