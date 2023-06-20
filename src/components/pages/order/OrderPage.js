@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 export default function OrderPage() {
   // State
   const { username } = useParams();
-  const [isModeAdmin, setIsModeAdmin] = useState(true);
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddSelected, setIsAddSelected] = useState(true);
   const [isEditSelected, setIsEditSelected] = useState(false);
