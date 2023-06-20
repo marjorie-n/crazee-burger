@@ -1,17 +1,19 @@
-import { useContext } from "react"
-import styled from "styled-components"
-import OrderContext from "../../../../../context/OrderContext"
-import { theme } from "../../../../../theme"
+import { useContext } from "react";
+import styled from "styled-components";
+import OrderContext from "../../../../../context/OrderContext";
+import { theme } from "../../../../../theme";
+import { getTabsConfig, getTabSelected } from "./getTabsConfig";
 
 export default function AdminPanel() {
-  const { isAddSelected, isEditSelected } = useContext(OrderContext)
+  const { currentTabSelected } = useContext(OrderContext);
+  const tabs = getTabsConfig(currentTabSelected);
+  const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (
     <AdminPanelStyled className="panel-admin">
-      {isAddSelected && "Ajouter un produit"}
-      {isEditSelected && "Modifier un produit"}
+      {currentTabSelected === tabSelected.index && tabSelected.label}
     </AdminPanelStyled>
-  )
+  );
 }
 
 const AdminPanelStyled = styled.div`
@@ -21,4 +23,4 @@ const AdminPanelStyled = styled.div`
   background: ${theme.colors.white};
   border-top: 1px solid ${theme.colors.greyLight};
   box-shadow: 0px -6px 8px -2px rgba(0, 0, 0, 0.1);
-`
+`;
