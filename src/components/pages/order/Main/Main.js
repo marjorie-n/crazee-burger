@@ -1,28 +1,35 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme/index.js";
 import Menu from "./Menu.js";
-
+import Admin from "./Admin/Admin.js";
+import OrderContext from "../../../../context/OrderContext.js";
+import { useContext } from "react";
 export default function Main() {
+  const { isModeAdmin } = useContext(OrderContext);
   return (
-    <MainStyled>
-      {/* <div className="basket">Basket</div> */}
-      <Menu />
+    <MainStyled className="main">
+      <div className="menu-and-admin">
+        <Menu />
+        {/* conditional rendering */}
+        {isModeAdmin && <Admin />}
+      </div>
     </MainStyled>
   );
 }
+
 const MainStyled = styled.div`
   background: ${theme.colors.background_white};
-  flex: 1; // or you can also use this : height: calc(95vh - 10vh);
+  height: calc(95vh - 10vh);
 
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: ${theme.shadows.strong};
 
   display: grid;
   grid-template-columns: 1fr;
-
-  overflow-y: scroll;
-  /* .basket {
-  background: pink;
-} */
+  .menu-and-admin {
+    position: relative;
+    display: grid;
+    overflow-y: hidden;
+  }
 `;
