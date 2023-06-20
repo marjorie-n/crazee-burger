@@ -6,7 +6,7 @@ import ToastAdmin from "./ToastAdmin.js";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
-export default function NavbarRightSide() {
+export default function NavbarRightSide({ username }) {
   const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext);
   const notify = () => {
     if (!isModeAdmin) {
@@ -35,7 +35,7 @@ export default function NavbarRightSide() {
         colorText={"#ffeaa7"}
         onToggle={notify}
       />
-      <Profile />
+      <Profile username={username}/>
       <ToastAdmin />
     </NavbarRightSideStyled>
   );

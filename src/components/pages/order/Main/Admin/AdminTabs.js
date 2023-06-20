@@ -1,37 +1,68 @@
+import React, { useContext } from "react";
 import styled from "styled-components";
-import Tabs from "../../../../reusable-UI/Tabs.js";
+import Tab from "../../../../reusable-UI/Tabs";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
-import { theme } from "../../../../../theme/index.js";
+import { MdModeEditOutline } from "react-icons/md";
+import { theme } from "../../../../../theme";
+import OrderContext from "../../../../../context/OrderContext";
 
-export default function AdminTabs({ isCollapsed, setIsCollapsed }) {
+export default function AdminTabs() {
+  const {
+    isCollapsed,
+    setIsCollapsed,
+    isAddSelected,
+    setIsAddSelected,
+    isEditSelected,
+    setIsEditSelected,
+  } = useContext(OrderContext);
+
+  const selectAddTab = () => {
+    setIsCollapsed(false);
+    setIsAddSelected(true);
+    setIsEditSelected(false);
+  };
+
+  const selectEditTab = () => {
+    setIsCollapsed(false);
+    setIsEditSelected(true);
+    setIsAddSelected(false);
+  };
+
   return (
     <AdminTabsStyled>
-      <Tabs
-        label=""
-        Icon={isCollapsed ? <FiChevronDown /> : <FiChevronUp />}
+      <Tab
+        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
         onClick={() => setIsCollapsed(!isCollapsed)}
         className={isCollapsed ? "is-active" : ""}
       />
-      <Tabs
+      <Tab
         label="Ajouter un produit"
         Icon={<AiOutlinePlus />}
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className={isCollapsed ? "is-active" : ""}
+        onClick={selectAddTab}
+        className={isAddSelected ? "is-active" : ""}
+      />
+      <Tab
+        label="Modifier un produit"
+        Icon={<MdModeEditOutline />}
+        onClick={selectEditTab}
+        className={isEditSelected ? "is-active" : ""}
       />
     </AdminTabsStyled>
   );
 }
 
 const AdminTabsStyled = styled.div`
+  /* border: 2px solid red; */
   display: flex;
-  padding: 0 20px;
 
   .is-active {
-    background-color: ${theme.colors.background_dark};
-    border-color: ${theme.colors.background_dark};
+    background: ${theme.colors.background_dark};
     color: ${theme.colors.white};
+    border-color: ${theme.colors.background_dark};
+    border-bottom: 2px;
   }
+
   button {
     margin-left: 1px;
   }
