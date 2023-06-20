@@ -2,6 +2,7 @@ import styled from "styled-components";
 import AdminPanel from "./AdminPanel.js";
 import AdminTabs from "./AdminTabs.js";
 import { useState } from "react";
+
 export default function Admin() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -14,9 +15,8 @@ export default function Admin() {
 }
 
 const AdminStyled = styled.div`
-  height: 250px;
-  bottom: 0;
-  right: 0;
-  left: 0;
   position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;

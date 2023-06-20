@@ -25,7 +25,6 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
-  border: 2px solid blue;
   background: ${theme.colors.background_white};
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
