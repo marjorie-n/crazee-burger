@@ -9,7 +9,7 @@ import { theme } from "../../../theme";
 
 // import icons from "react-icons";
 export default function LoginForm() {
-  const [value, setvalue] = useState("");
+  const [value, setvalue] = useState("Marjorie");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -31,7 +31,7 @@ export default function LoginForm() {
         <h2>Connectez-vous</h2>
       </div>
       <TextInput
-        username={value}
+        value={value}
         onChange={handleChange}
         placeholder="Entrez votre prénom"
         Icon={<BsPersonCircle className="icon" />}
@@ -58,7 +58,7 @@ const LoginFormStyled = styled.form`
     color: ${theme.colors.white};
   }
   h2 {
-    font-size:${theme.fonts.size.P2 *2}px ;
+    font-size: ${theme.fonts.size.P2 * 2}px;
     color: ${theme.colors.white};
     margin: 20px 10px 10px;
     font-size: ${theme.fonts.size.P4};

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Input({ username, onChange, Icon, ...extraProps }) {
+export default function Input({ value,username, onChange, Icon, ...extraProps }) {
   console.log("extraProps:", extraProps);
   return (
     <InputStyled>
@@ -8,6 +8,8 @@ export default function Input({ username, onChange, Icon, ...extraProps }) {
       {Icon && Icon}
       <input
         type="text"
+        value={value}
+        
         // placeholder={placeholder}
         // required={required ? true : false}
         {...extraProps}
