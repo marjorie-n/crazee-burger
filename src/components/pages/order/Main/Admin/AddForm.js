@@ -42,7 +42,7 @@ export default function AddForm() {
       <div className="input-fields">
         <input
           value={newProduct.title}
-          name=""
+          name="title"
           onChange={handleChange}
           type="text"
           placeholder="Nom"
@@ -50,14 +50,14 @@ export default function AddForm() {
         />
         <input
           value={newProduct.sourceImage}
-          name="{sourceImage}"
+          name="sourceImage"
           onChange={handleChange}
           type="text"
           placeholder="Image URL"
         />
         <input
           value={newProduct.price ? newProduct.price : ""}
-          name="{price}"
+          name="price"
           onChange={handleChange}
           type="text"
           placeholder="Prix"
