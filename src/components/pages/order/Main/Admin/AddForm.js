@@ -1,27 +1,60 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext.js";
 
 export default function AddForm() {
+  //state
+  const [title, setTitle] = useState("");
+  const [sourceImage, setSourceImage] = useState("");
+  const [price, setPrice] = useState(0);
+
   const { handleAdd } = useContext(OrderContext);
-  const newProduct = {
-    id: new Date().getTime(),
-    imageSource: "/images/burger1.png",
-    title: "Burger 1",
-    price: 5.297,
-  };
+  // comportements
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("handleAdd");
-    handleAdd(newProduct);
+    const AddProcduct = {
+      id: new Date().getTime(),
+      title: title,
+      sourceImage: sourceImage,
+      price: price,
+    };
+    handleAdd(AddProcduct);
   };
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleImage = (e) => {
+    setSourceImage(e.target.value);
+  };
+
+  const handlePrice = (e) => {
+    setPrice(e.target.value);
+  };
+
   return (
     <AddFormStyled onSubmit={handleClick}>
-      <div className="image-preview">Image</div>
+      <div className="image-preview">Aucune image</div>
       <div className="input-fields">
-        <input type="text" placeholder="Nom" className="text" />
-        <input type="text" placeholder="Image URL" />
-        <input type="text" placeholder="Prix" />
+        <input
+          value={title}
+          onChange={handleTitle}
+          type="text"
+          placeholder="Nom"
+          className="text"
+        />
+        <input
+          value={sourceImage}
+          onChange={handleImage}
+          type="text"
+          placeholder="Image URL"
+        />
+        <input
+          value={price ? price : ""}
+          onChange={handlePrice}
+          type="text"
+          placeholder="Prix"
+        />
       </div>
       <button className="submit-button">Submit</button>
     </AddFormStyled>
