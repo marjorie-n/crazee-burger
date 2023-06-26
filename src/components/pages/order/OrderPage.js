@@ -5,6 +5,7 @@ import Main from "./Main/Main.js";
 import { useState } from "react";
 import OrderContext from "../../../context/OrderContext.js";
 import { useParams } from "react-router-dom";
+import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 export default function OrderPage() {
   // State
@@ -14,6 +15,14 @@ export default function OrderPage() {
   // const [isAddSelected, setIsAddSelected] = useState(true);
   // const [isEditSelected, setIsEditSelected] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
+
+  const handleAdd = (newProduct) => {
+    const menuCopy = [...menu];
+    const menuUpdated = [newProduct, ...menuCopy];
+    console.log(menuUpdated);
+    setMenu(menuUpdated);
+  };
 
   // comportements
 
@@ -24,6 +33,8 @@ export default function OrderPage() {
     setIsCollapsed,
     currentTabSelected,
     setCurrentTabSelected,
+    menu,
+    handleAdd,
   };
 
   return (
