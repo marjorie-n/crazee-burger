@@ -2,34 +2,38 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext.js";
 
+const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  sourceImage: "",
+  price: 0,
+};
+
 export default function AddForm() {
   //state
-  const [title, setTitle] = useState("");
-  const [sourceImage, setSourceImage] = useState("");
-  const [price, setPrice] = useState(0);
+
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const { handleAdd } = useContext(OrderContext);
   // comportements
   const handleClick = (e) => {
     e.preventDefault();
     const AddProcduct = {
-      id: new Date().getTime(),
-      title: title,
-      sourceImage: sourceImage,
-      price: price,
+      ...newProduct,
+      id: crypto.randomUUID(), //generer un id unique de facon aleatoire
     };
     handleAdd(AddProcduct);
   };
 
-  const handleTitle = (e) => {
-    setTitle(e.target.value);
-  };
-  const handleImage = (e) => {
-    setSourceImage(e.target.value);
-  };
-
-  const handlePrice = (e) => {
-    setPrice(e.target.value);
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    // const newValue = e.target.value;
+    // const name = e.target.name;
+    const { value, name } = e.target;
+    setNewProduct({
+      ...newProduct,
+      [name]: value,
+    });
   };
 
   return (
@@ -37,21 +41,24 @@ export default function AddForm() {
       <div className="image-preview">Aucune image</div>
       <div className="input-fields">
         <input
-          value={title}
-          onChange={handleTitle}
+          value={newProduct.title}
+          name=""
+          onChange={handleChange}
           type="text"
           placeholder="Nom"
           className="text"
         />
         <input
-          value={sourceImage}
-          onChange={handleImage}
+          value={newProduct.sourceImage}
+          name="{sourceImage}"
+          onChange={handleChange}
           type="text"
           placeholder="Image URL"
         />
         <input
-          value={price ? price : ""}
-          onChange={handlePrice}
+          value={newProduct.price ? newProduct.price : ""}
+          name="{price}"
+          onChange={handleChange}
           type="text"
           placeholder="Prix"
         />
