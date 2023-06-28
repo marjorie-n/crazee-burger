@@ -5,7 +5,7 @@ import OrderContext from "../../../../../context/OrderContext.js";
 const EMPTY_PRODUCT = {
   id: "",
   title: "",
-  sourceImage: "",
+  imageSource: "",
   price: 0,
 };
 
@@ -49,8 +49,8 @@ export default function AddForm() {
           className="text"
         />
         <input
-          value={newProduct.sourceImage}
-          name="sourceImage"
+          value={newProduct.imageSource}
+          name="imageSource"
           onChange={handleChange}
           type="text"
           placeholder="Image URL"
