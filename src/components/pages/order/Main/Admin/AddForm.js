@@ -38,7 +38,14 @@ export default function AddForm() {
 
   return (
     <AddFormStyled onSubmit={handleClick}>
-      <div className="image-preview">Aucune image</div>
+      <div className="image-preview">
+        {newProduct.imageSource ? (
+          <img src={newProduct.imageSource} alt={newProduct.title} />
+        ) : (
+          <div>Aucune image</div>
+          // <img src={newProduct.imageSource} alt="image" />
+        )}
+      </div>
       <div className="input-fields">
         <input
           value={newProduct.title}
@@ -75,9 +82,18 @@ const AddFormStyled = styled.form`
   grid-template: repeat(4, 1fr) / 1fr 3fr;
   height: 100%;
   width: 70%;
+
   .image-preview {
-    background: blue;
     grid-area: 1/1 / 4/2;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
   .input-fields {
     background: red;
