@@ -17,6 +17,7 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
+  // comportements
   const handleAdd = (newProduct) => {
     const menuCopy = [...menu];
     const menuUpdated = [newProduct, ...menuCopy];
@@ -24,7 +25,18 @@ export default function OrderPage() {
     setMenu(menuUpdated);
   };
 
-  // comportements
+  const handleDelete = (idOfProductToDelete) => {
+    // alert(idOfProductToDelete);
+    //copie du state
+    const menuCopy = [...menu];
+    // manip du state
+    const menuUpdated = menuCopy.filter(
+      (product) => product.id !== idOfProductToDelete
+    );
+
+    // mise à jour du state
+    setMenu(menuUpdated);
+  };
 
   const orderContextValue = {
     isModeAdmin,
@@ -35,6 +47,7 @@ export default function OrderPage() {
     setCurrentTabSelected,
     menu,
     handleAdd,
+    handleDelete,
   };
 
   return (
