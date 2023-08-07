@@ -15,7 +15,7 @@ export default function OrderPage() {
   // const [isAddSelected, setIsAddSelected] = useState(true);
   // const [isEditSelected, setIsEditSelected] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
+  const [menu, setMenu] = useState(fakeMenu.SMALL);
 
   // comportements
   const handleAdd = (newProduct) => {
@@ -38,6 +38,10 @@ export default function OrderPage() {
     setMenu(menuUpdated);
   };
 
+  const resetMenu = () => {
+    setMenu(fakeMenu.MEDIUM);
+  }
+
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -46,6 +50,7 @@ export default function OrderPage() {
     currentTabSelected,
     setCurrentTabSelected,
     menu,
+    resetMenu,
     handleAdd,
     handleDelete,
   };
