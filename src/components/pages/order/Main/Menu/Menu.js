@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../../../../theme/index.js";
-import Card from "../../../reusable-UI/Card.js";
-import { formatPrice } from "../../../../utils/maths.js";
-import OrderContext from "../../../../context/OrderContext.js";
+import { theme } from "../../../../../theme/index.js";
+import Card from "../../../../reusable-UI/Card.js";
+import { formatPrice } from "../../../../../utils/maths.js";
+import OrderContext from "../../../../../context/OrderContext.js";
+import EmptyMenuAdmin from "./EmptyMenuAdmin.js";
+import EmptyMenuClient from "./EmptyMenuClient.js";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 export default function Menu() {
@@ -12,7 +14,12 @@ export default function Menu() {
 
   //comportements
   //affichage
-  if (menu.length === 0) return <div><span>Aucun produit</span><button onClick={resetMenu}>Nouveau produit</button></div>
+  if (menu.length === 0) {
+    const controlMenu = isModeAdmin ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />;
+    return controlMenu;
+    // if(!isModeAdmin) return <EmptyMenuClient/>
+    // return < EmptyMenuAdmin onReset={resetMenu} />
+  }
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, title, imageSource, price }) => {

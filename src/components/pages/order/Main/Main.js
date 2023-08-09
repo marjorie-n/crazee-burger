@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme/index.js";
-import Menu from "./Menu.js";
+import Menu from "./Menu/Menu.js";
 import Admin from "./Admin/Admin.js";
 import OrderContext from "../../../../context/OrderContext.js";
 import { useContext } from "react";
