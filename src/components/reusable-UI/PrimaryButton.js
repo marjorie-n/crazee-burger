@@ -59,5 +59,12 @@ const PrimaryButtonStyled = styled.button`
       background-color: ${theme.colors.white};
       color: ${theme.colors.primary};
     }
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: ${theme.fonts.size.SM};
+      color: ${theme.colors.greySemiDark};
+    }
   }
 `;
