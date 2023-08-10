@@ -2,7 +2,12 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext.js";
 import { FiCheck } from "react-icons/fi";
+import { FaHamburger } from "react-icons/fa";
+import { BsFillCameraFill } from "react-icons/bs";
+import { MdOutlineEuro } from "react-icons/md";
 import { theme } from "../../../../../theme/index.js";
+import TextInput from "../../../../reusable-UI/TextInput.js";
+
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -59,27 +64,32 @@ export default function AddForm() {
         )}
       </div>
       <div className="input-fields">
-        <input
+        <TextInput
           value={newProduct.title}
           name="title"
-          onChange={handleChange}
           type="text"
           placeholder="Nom du produit (ex.Super Burger)"
-          className="text"
+          onChange={handleChange}
+          version="minimalist"
+          Icon={<FaHamburger />}
         />
-        <input
+        <TextInput
           value={newProduct.imageSource}
           name="imageSource"
-          onChange={handleChange}
           type="text"
           placeholder="Lien URL d'une image"
+          onChange={handleChange}
+          version="minimalist"
+          Icon={<BsFillCameraFill />}
         />
-        <input
+        <TextInput
           value={newProduct.price ? newProduct.price : ""}
           name="price"
-          onChange={handleChange}
           type="text"
           placeholder="Prix"
+          onChange={handleChange}
+          version="minimalist"
+          Icon={<MdOutlineEuro />}
         />
       </div>
       <div className="submit">
@@ -94,7 +104,7 @@ export default function AddForm() {
     </AddFormStyled>
   );
 }
-const AddFormStyled = styled.form `
+const AddFormStyled = styled.form`
   display: grid;
   // grid-template-columns: 1fr 3fr;
   // grid-template-rows: repeat(4, 1fr);
@@ -128,9 +138,10 @@ const AddFormStyled = styled.form `
     }
   }
   .input-fields {
-    background: red;
+    // background: red;
     grid-area: 1/2 / 4/3;
     display: grid;
+    grid-row-gap: 8px;
   }
   .submit{
     background: green;

@@ -37,6 +37,7 @@ export default function LoginForm() {
         Icon={<BsPersonCircle />}
         required
         className="input-login"
+        version="normal"
       />
       <PrimaryButton
         label="Accéder à mon espace"
