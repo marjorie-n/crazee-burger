@@ -36,9 +36,12 @@ const InputStyled = styled.div`
       background-color: ${theme.colors.white};
     }
   }
-  ${({ version }) => version === "normal" && extraStyleNormal};
-  ${({ version }) => version === "minimalist" && extraStyleMinimalist};
-  `
+  // notion de version normal et minimalist pour le style du composant
+  // ${({ version }) => version === "normal" && extraStyleNormal};
+  // ${({ version }) => version === "minimalist" && extraStyleMinimalist};
+  //notion de dictionnaire pour le style du composant
+  ${({ version }) => extraStyle[version]};
+`;
 
 const extraStyleNormal = css`
   background-color: ${theme.colors.white};
@@ -63,4 +66,10 @@ background-color: ${theme.colors.background_white};
       outline: 0;
     }
   }
-  `;
+  `
+// notion de dictionnaire pour le style du composant
+const extraStyle = {
+  normal: extraStyleNormal,
+  minimalist: extraStyleMinimalist,
+};
+
