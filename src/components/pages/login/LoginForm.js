@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-UI/TextInput";
-import PrimaryButton from "../../reusable-UI/PrimaryButton";
+import Button from "../../reusable-UI/Button";
 import { theme } from "../../../theme";
 
 // import icons from "react-icons";
@@ -39,9 +39,10 @@ export default function LoginForm() {
         className="input-login"
         version="normal"
       />
-      <PrimaryButton
+      <Button
         label="Accéder à mon espace"
         Icon={<IoChevronForward />}
+        version ="default"
       />
     </LoginFormStyled>
   );

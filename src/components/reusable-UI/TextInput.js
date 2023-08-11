@@ -36,7 +36,7 @@ const InputStyled = styled.div`
       background-color: ${theme.colors.white};
     }
   }
-  // notion de version normal et minimalist pour le style du composant
+  // notion de variant de style du composant
   // ${({ version }) => version === "normal" && extraStyleNormal};
   // ${({ version }) => version === "minimalist" && extraStyleMinimalist};
   //notion de dictionnaire pour le style du composant
@@ -55,7 +55,7 @@ const extraStyleNormal = css`
   }
   `
 const extraStyleMinimalist = css`
-background-color: ${theme.colors.background_white};
+background-color: ${theme.colors.white};
   padding: 8px 16px;
   color: ${theme.colors.greyBlue};
   input {
