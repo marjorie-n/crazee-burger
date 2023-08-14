@@ -93,11 +93,11 @@ export default function AddForm() {
         />
       </div>
       <div className="submit">
-        <Button className="submit-button" type="submit" label="Ajouter un nouveau produit au menu" version="success"/>
+        <Button className="submit-button" type="submit" label="Ajouter un nouveau produit au menu" version="success" />
         {isSubmitted && (
           <div className="submit-message">
-            <FiCheck />
-            <span>Ajouté avec succés</span>
+            <FiCheck className="icon" />
+            <span className="message">Ajouté avec succés</span>
           </div>
         )}
       </div>
@@ -148,11 +148,27 @@ const AddFormStyled = styled.form`
     grid-area: 4/-2 / 5/-1;
     display: flex;
     align-items: center;
+    position: relative;
     .submit-button {
       width: 50%;
     }
     .submit-message {
-      border: 2px solid pink;
+      // border: 2px solid pink;
+
+      .icon {
+        color: ${theme.colors.success};
+        margin-left: 10px;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        border: 1px solid ${theme.colors.success};
+        vertical-align: middle;
+      }
+      .message {
+        color: ${theme.colors.success};
+        margin-left: 5px;
+        font-size: ${theme.fonts.size.SM};
+      }
     }
   }
 `;

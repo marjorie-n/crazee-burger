@@ -11,7 +11,7 @@ export default function Button({ label, Icon, className, version = "default" }) 
 }
 
 const ButtonStyled = styled.button`
-//notion de dictionnaire pour le style du composant
+//variant de style du composant
 ${({ version }) => extraButtonStyle[version]};
 `;
 const extraButtonStyleNormal = css`
@@ -91,6 +91,7 @@ const extraButtonStyleSuccess = css`
     border: 1px solid ${theme.colors.success};
   }
 `;
+// Dictionnaire pour le style du composant
 const extraButtonStyle = {
   default: extraButtonStyleNormal,
   success: extraButtonStyleSuccess,
