@@ -6,6 +6,7 @@ import { useState } from "react";
 import OrderContext from "../../../context/OrderContext.js";
 import { useParams } from "react-router-dom";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "./Main/Admin/AddForm.js";
 
 export default function OrderPage() {
   // State
@@ -16,6 +17,8 @@ export default function OrderPage() {
   // const [isEditSelected, setIsEditSelected] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu.SMALL);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
 
   // comportements
   const handleAdd = (newProduct) => {
@@ -53,6 +56,8 @@ export default function OrderPage() {
     resetMenu,
     handleAdd,
     handleDelete,
+    newProduct,
+    setNewProduct,
   };
 
   return (
