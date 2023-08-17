@@ -1,14 +1,11 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../../context/OrderContext.js";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
-// import { theme } from "../../../../../../theme/index.js";
 import TextInput from "../../../../../reusable-UI/TextInput.js";
 import Button from "../../../../../reusable-UI/Button.js";
 import ImagePreview from "./ImagePreview.js";
 import SubmitMessage from "./SubmitMessage.js";
+import { getInputTextsConfig } from "./getInputTextsConfig.js";
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -54,37 +51,20 @@ export default function AddForm() {
     });
   };
 
+  const inputTexts = getInputTextsConfig(newProduct);
   return (
     <AddFormStyled onSubmit={handleClick}>
       <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title} />
       <div className="input-fields">
-        <TextInput
-          value={newProduct.title}
-          name="title"
-          type="text"
-          placeholder="Nom du produit (ex.Super Burger)"
+        {inputTexts.map((input) => <TextInput
+          key={input.id}
+          value={input.value}
+          name={input.name}
+          placeholder={input.placeholder}
           onChange={handleChange}
-          version="minimalist"
-          Icon={<FaHamburger />}
-        />
-        <TextInput
-          value={newProduct.imageSource}
-          name="imageSource"
-          type="text"
-          placeholder="Lien URL d'une image"
-          onChange={handleChange}
-          version="minimalist"
-          Icon={<BsFillCameraFill />}
-        />
-        <TextInput
-          value={newProduct.price ? newProduct.price : ""}
-          name="price"
-          type="text"
-          placeholder="Prix"
-          onChange={handleChange}
-          version="minimalist"
-          Icon={<MdOutlineEuro />}
-        />
+          Icon={input.Icon}
+          version={input.version}
+        />)}
       </div>
       <div className="submit">
         <Button className="submit-button" type="submit" label="Ajouter un nouveau produit au menu" version="success" />
