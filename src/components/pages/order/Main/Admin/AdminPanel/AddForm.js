@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import OrderContext from "../../../../../context/OrderContext.js";
+import OrderContext from "../../../../../../context/OrderContext.js";
 import { FiCheck } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import { theme } from "../../../../../theme/index.js";
-import TextInput from "../../../../reusable-UI/TextInput.js";
-import Button from "../../../../reusable-UI/Button.js";
-import ImagePreview from "./AdminPanel/ImagePreview";
+import { theme } from "../../../../../../theme/index.js";
+import TextInput from "../../../../../reusable-UI/TextInput.js";
+import Button from "../../../../../reusable-UI/Button.js";
+import ImagePreview from "./ImagePreview.js";
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -56,7 +56,7 @@ export default function AddForm() {
 
   return (
     <AddFormStyled onSubmit={handleClick}>
-      <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title} />
+      <ImagePreview imageSource={newProduct} title={newProduct.title} />
       <div className="input-fields">
         <TextInput
           value={newProduct.title}
@@ -100,13 +100,14 @@ export default function AddForm() {
 }
 const AddFormStyled = styled.form`
   display: grid;
-  // grid-template-columns: 1fr 3fr;
-  // grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(4, 1fr);
   grid-template: repeat(4, 1fr) / 1fr 3fr;
   height: 100%;
   width: 70%;
   grid-column-gap: 20px;
   grid-row-gap: 8px;
+
   .input-fields {
     // background: red;
     grid-area: 1/2 / 4/3;
