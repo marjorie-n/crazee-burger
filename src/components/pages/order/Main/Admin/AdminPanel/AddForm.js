@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../../context/OrderContext.js";
-import { FiCheck } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import { theme } from "../../../../../../theme/index.js";
+// import { theme } from "../../../../../../theme/index.js";
 import TextInput from "../../../../../reusable-UI/TextInput.js";
 import Button from "../../../../../reusable-UI/Button.js";
 import ImagePreview from "./ImagePreview.js";
+import SubmitMessage from "./SubmitMessage.js";
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -56,7 +56,7 @@ export default function AddForm() {
 
   return (
     <AddFormStyled onSubmit={handleClick}>
-      <ImagePreview imageSource={newProduct} title={newProduct.title} />
+      <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title} />
       <div className="input-fields">
         <TextInput
           value={newProduct.title}
@@ -89,10 +89,7 @@ export default function AddForm() {
       <div className="submit">
         <Button className="submit-button" type="submit" label="Ajouter un nouveau produit au menu" version="success" />
         {isSubmitted && (
-          <div className="submit-message">
-            <FiCheck className="icon" />
-            <span className="message">Ajouté avec succés</span>
-          </div>
+          <SubmitMessage />
         )}
       </div>
     </AddFormStyled>
@@ -123,23 +120,4 @@ const AddFormStyled = styled.form`
     .submit-button {
       width: 50%;
     }
-    .submit-message {
-      // border: 2px solid pink;
-
-      .icon {
-        color: ${theme.colors.success};
-        margin-left: 10px;
-        width: 1em;
-        height: 1em;
-        border-radius: 50%;
-        border: 1px solid ${theme.colors.success};
-        vertical-align: middle;
-      }
-      .message {
-        color: ${theme.colors.success};
-        margin-left: 5px;
-        font-size: ${theme.fonts.size.SM};
-      }
-    }
-  }
 `;
