@@ -56,15 +56,17 @@ export default function AddForm() {
     <AddFormStyled onSubmit={handleClick}>
       <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title} />
       <div className="input-fields">
-        {inputTexts.map((input) => <TextInput
-          key={input.id}
-          value={input.value}
-          name={input.name}
-          placeholder={input.placeholder}
-          onChange={handleChange}
-          Icon={input.Icon}
-          version={input.version}
-        />)}
+        {inputTexts.map((input) =>
+          <TextInput
+            {...input}
+            key={input.id}
+            // value={input.value}
+            name={input.name}
+            // placeholder={input.placeholder}
+            onChange={handleChange}
+            // Icon={input.Icon}
+            version={input.version}
+          />)}
       </div>
       <div className="submit">
         <Button className="submit-button" type="submit" label="Ajouter un nouveau produit au menu" version="success" />
