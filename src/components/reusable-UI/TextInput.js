@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function TextInput({ username, onChange, Icon, ...extraProps }) {
+export default function TextInput({ username, onChange, Icon, className, version = "normal", ...extraProps }) {
   // console.log("extraProps:", extraProps);
   return (
-    <InputStyled>
-      {Icon && Icon}
+    <InputStyled className={className} version={version}>
+      <div className="icon">{Icon && Icon}</div>
       <input onChange={onChange} type="text" {...extraProps} />
     </InputStyled>
   );
@@ -17,11 +17,13 @@ const InputStyled = styled.div`
   display: flex;
   align-items: center;
   padding: 18px 24px;
-  margin: 18px 0;
+
   .icon {
-    font-size: ${theme.fonts.size.SM};
-    margin-right: ${theme.gridUnit}px;
     color: ${theme.colors.greySemiDark};
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 0 8px 0 10px;
   }
   input {
     border: none;
@@ -34,4 +36,40 @@ const InputStyled = styled.div`
       background-color: ${theme.colors.white};
     }
   }
+  // notion de variant de style du composant
+  // ${({ version }) => version === "normal" && extraStyleNormal};
+  // ${({ version }) => version === "minimalist" && extraStyleMinimalist};
+  //notion de dictionnaire pour le style du composant
+  ${({ version }) => extraStyle[version]};
 `;
+
+const extraStyleNormal = css`
+  background-color: ${theme.colors.white};
+  padding: 18px 28px;
+  color: ${theme.colors.greySemiDark};
+  input {
+    color: ${theme.colors.dark};
+    &::placeholder {
+      color: ${theme.colors.white};
+    }
+  }
+  `
+const extraStyleMinimalist = css`
+background-color: ${theme.colors.white};
+  padding: 8px 16px;
+  color: ${theme.colors.greyBlue};
+  input {
+    color: ${theme.colors.dark};
+    background-color: ${theme.colors.background_white};
+
+    &:focus {
+      outline: 0;
+    }
+  }
+  `
+// notion de dictionnaire pour le style du composant
+const extraStyle = {
+  normal: extraStyleNormal,
+  minimalist: extraStyleMinimalist,
+};
+

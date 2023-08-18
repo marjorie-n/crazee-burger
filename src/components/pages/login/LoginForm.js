@@ -4,12 +4,12 @@ import styled from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-UI/TextInput";
-import PrimaryButton from "../../reusable-UI/PrimaryButton";
+import Button from "../../reusable-UI/Button";
 import { theme } from "../../../theme";
 
 // import icons from "react-icons";
 export default function LoginForm() {
-  const [value, setvalue] = useState("");
+  const [value, setvalue] = useState("Marjorie");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -31,15 +31,18 @@ export default function LoginForm() {
         <h2>Connectez-vous</h2>
       </div>
       <TextInput
-        username={value}
+        value={value}
         onChange={handleChange}
         placeholder="Entrez votre prénom"
-        Icon={<BsPersonCircle className="icon" />}
+        Icon={<BsPersonCircle />}
         required
+        className="input-login"
+        version="normal"
       />
-      <PrimaryButton
+      <Button
         label="Accéder à mon espace"
-        Icon={<IoChevronForward className="icon" />}
+        Icon={<IoChevronForward />}
+        version ="default"
       />
     </LoginFormStyled>
   );
@@ -58,7 +61,7 @@ const LoginFormStyled = styled.form`
     color: ${theme.colors.white};
   }
   h2 {
-    font-size:${theme.fonts.size.P2 *2}px ;
+    font-size: ${theme.fonts.size.P2 * 2}px;
     color: ${theme.colors.white};
     margin: 20px 10px 10px;
     font-size: ${theme.fonts.size.P4};
@@ -68,12 +71,7 @@ const LoginFormStyled = styled.form`
     border: 1.5px solid ${theme.colors.loginLine};
     margin-bottom: ${theme.gridUnit * 5}px;
   }
-
-  .icon {
-    font-size: ${theme.fonts.size.SM};
-    margin-left: ${theme.gridUnit}px;
-    color: ${theme.colors.white};
-    align-items: center;
-    justify-content: center;
+  .input-login{
+   margin: 18px 0;
   }
 `;
