@@ -99,7 +99,8 @@ const AddFormStyled = styled.form`
     display: flex;
     align-items: center;
     position: relative;
+
     .submit-button {
-      width: 50%;
+      height: 100%;
     }
 `;
