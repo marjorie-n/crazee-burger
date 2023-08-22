@@ -8,16 +8,8 @@ import SubmitMessage from "./SubmitMessage.js";
 import { getInputTextsConfig } from "./getInputTextsConfig.js";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 
-// export const EMPTY_PRODUCT = {
-//   id: "",
-//   title: "",
-//   imageSource: "",
-//   price: 0,
-// };
-
 export default function AddForm() {
   //state
-
   // const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
