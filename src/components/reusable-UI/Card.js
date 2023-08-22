@@ -8,10 +8,11 @@ export default function Card({
   imageSource,
   leftDescription,
   hasDeletbutton = true,
-  onDelete
+  onDelete,
+  onClick,
 }) {
   return (
-    <CardStyled className="produit">
+    <CardStyled className="produit" onClick={onClick}>
       {hasDeletbutton && (
         <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
           <TiDelete className="icon" />

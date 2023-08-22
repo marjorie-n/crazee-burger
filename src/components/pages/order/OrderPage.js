@@ -6,7 +6,8 @@ import { useState } from "react";
 import OrderContext from "../../../context/OrderContext.js";
 import { useParams } from "react-router-dom";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm.js";
+import { EMPTY_PRODUCT } from "../../../enums/product.js";
+
 
 export default function OrderPage() {
   // State
@@ -18,12 +19,15 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-
+  const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
 
   // comportements
   const handleAdd = (newProduct) => {
+    // 1. copie du tableau
     const menuCopy = [...menu];
+    // 2. manip du tableau
     const menuUpdated = [newProduct, ...menuCopy];
+    // 3. mise à jour du state
     console.log(menuUpdated);
     setMenu(menuUpdated);
   };
@@ -58,6 +62,8 @@ export default function OrderPage() {
     handleDelete,
     newProduct,
     setNewProduct,
+    productSelected,
+    setproductSelected,
   };
 
   return (
