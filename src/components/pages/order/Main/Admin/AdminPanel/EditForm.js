@@ -6,22 +6,24 @@ import OrderContext from "../../../../../../context/OrderContext.js";
 import ImagePreview from "./ImagePreview.js";
 import TextInput from "../../../../../reusable-UI/TextInput.js";
 import { getInputTextsConfig } from "./getInputTextsConfig.js";
-import { useState } from "react";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
-
 export default function EditForm() {
-  const { productSelected } = useContext(OrderContext);
-  const [editProduct, seteditProduct] = useState(EMPTY_PRODUCT);//state interne du composant
-
-  const handleChange = (e) => {
-    const { value, name } = e.target;
-    seteditProduct({
-      ...editProduct,
-      [name]: value,
-    })
-  }
+  //state
+  const { productSelected, setproductSelected, handleEdit } = useContext(OrderContext);
 
   const inputTexts = getInputTextsConfig(productSelected);
+  // comportements
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    const productToBeingUpdated = {
+      ...productSelected,
+      [name]: value,
+    };
+    setproductSelected(productToBeingUpdated);// update to form
+    //state handler du menu
+    handleEdit(productToBeingUpdated);//updtate menu
+  }
+  //affichage 
+
   return (
     <EditFormStyled>
       <ImagePreview imageSource={productSelected.imageSource} title={productSelected.title} />

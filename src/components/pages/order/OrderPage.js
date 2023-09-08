@@ -16,7 +16,7 @@ export default function OrderPage() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   // const [isAddSelected, setIsAddSelected] = useState(true);
   // const [isEditSelected, setIsEditSelected] = useState(false);
-  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [currentTabSelected, setCurrentTabSelected] = useState("edit");
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
@@ -24,9 +24,9 @@ export default function OrderPage() {
   // comportements
   const handleAdd = (newProduct) => {
     // 1. copie du tableau
-    const menuCopy = [...menu];
+    const menuCopy = JSON.parse(JSON.stringify(menu));//deep clone of the array
     // 2. manip du tableau
-    const menuUpdated = [newProduct, ...menuCopy];
+    const menuUpdated = [...menuCopy, newProduct];
     // 3. mise à jour du state
     console.log(menuUpdated);
     setMenu(menuUpdated);
@@ -35,7 +35,7 @@ export default function OrderPage() {
   const handleDelete = (idOfProductToDelete) => {
     // alert(idOfProductToDelete);
     //copie du state
-    const menuCopy = [...menu];
+    const menuCopy = JSON.parse(JSON.stringify(menu));//deep clone of the array
     // manip du state
     const menuUpdated = menuCopy.filter(
       (product) => product.id !== idOfProductToDelete
@@ -44,6 +44,20 @@ export default function OrderPage() {
     // mise à jour du state
     setMenu(menuUpdated);
   };
+
+  const handleEdit = (productToEdit) => {
+    //@TODO: find a clearer implementation
+    console.log("productToEdit:", productToEdit);
+    // 1. copie du state
+    const menuCopy = JSON.parse(JSON.stringify(menu));//deep clone of the array
+    // 2. manip du state
+    const indexOfProductToEdit = menu.findIndex(
+      (product) => product.id === productToEdit.id)
+    console.log("indexOfProductToEdit:", indexOfProductToEdit);
+    menuCopy[indexOfProductToEdit] = productToEdit;
+    // 3. mise à jour du state
+    setMenu(menuCopy);
+  }
 
   const resetMenu = () => {
     setMenu(fakeMenu.MEDIUM);
@@ -64,6 +78,7 @@ export default function OrderPage() {
     setNewProduct,
     productSelected,
     setproductSelected,
+    handleEdit,
   };
 
   return (
