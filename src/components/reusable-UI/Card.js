@@ -10,23 +10,26 @@ export default function Card({
   hasDeletbutton = true,
   onDelete,
   onClick,
+  isHoverable
 }) {
   return (
-    <CardStyled className="produit" onClick={onClick}>
-      {hasDeletbutton && (
-        <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
-          <TiDelete className="icon" />
-        </button>
-      )}
-      <div className="image">
-        <img src={imageSource} alt={title} />
-      </div>
-      <div className="text-info">
-        <div className="title">{title}</div>
-        <div className="description">
-          <div className="left-description">{leftDescription}</div>
-          <div className="right-description">
-            <Button className="primary-button" label={"Ajouter"} />
+    <CardStyled className="produit" onClick={onClick} isHoverable={isHoverable}>
+      <div className="card">
+        {hasDeletbutton && (
+          <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
+            <TiDelete className="icon" />
+          </button>
+        )}
+        <div className="image">
+          <img src={imageSource} alt={title} />
+        </div>
+        <div className="text-info">
+          <div className="title">{title}</div>
+          <div className="description">
+            <div className="left-description">{leftDescription}</div>
+            <div className="right-description">
+              <Button className="primary-button" label={"Ajouter"} />
+            </div>
           </div>
         </div>
       </div>
@@ -35,6 +38,9 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
+${(props) => props.isHoverable && isHoverableStyled};
+border-radius: ${theme.borderRadius.extraRound};
+.card {
   background: ${theme.colors.white};
   box-sizing: border-box;
   width: 240px;
@@ -134,5 +140,14 @@ const CardStyled = styled.div`
         }
       }
     }
-  }
+  } 
+}  
+`;
+const isHoverableStyled = `:hover {
+  transform: scale(1.05);
+  transition: all 0.4s ease-in-out;
+  box-shadow: ${theme.shadows.orangeHighlight};
+  curdor: pointer;
+}
+
 `;
