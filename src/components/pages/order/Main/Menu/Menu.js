@@ -10,7 +10,7 @@ import EmptyMenuClient from "./EmptyMenuClient.js";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 export default function Menu() {
   // State
-  const { menu, isModeAdmin, handleDelete, resetMenu, setproductSelected,} = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, setproductSelected, } = useContext(OrderContext);
   //comportements
   //affichage
   if (menu.length === 0) {
@@ -19,12 +19,12 @@ export default function Menu() {
     // if(!isModeAdmin) return <EmptyMenuClient/>
     // return < EmptyMenuAdmin onReset={resetMenu} />
   }
-  const handleClick = (idproductSelected) => {
+  const handleClick = (idproductClickedOn) => {
     // console.log("idproductSelected:", idproductSelected);
     // Dans le menu, trouve le produit dont id est égal à id produit sélectionné
-    const productSelected = menu.find((product) => product.id === idproductSelected);
+    const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
     // console.log("productSelected:", productSelected);
-    setproductSelected(productSelected);
+    setproductSelected(productClickedOn);
   };
   return (
     <MenuStyled className="menu">

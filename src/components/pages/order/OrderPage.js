@@ -9,7 +9,6 @@ import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product.js";
 import { deepClone } from "../../../utils/array.js";
 
-
 export default function OrderPage() {
   // State
   const { username } = useParams();
@@ -22,7 +21,7 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
 
-  // comportements
+  // comportements (gestionnaire de state)
   const handleAdd = (newProduct) => {
     // 1. copie du tableau
     const menuCopy = deepClone(menu);
