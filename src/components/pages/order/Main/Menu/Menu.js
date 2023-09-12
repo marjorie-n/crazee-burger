@@ -6,11 +6,12 @@ import { formatPrice } from "../../../../../utils/maths.js";
 import OrderContext from "../../../../../context/OrderContext.js";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.js";
 import EmptyMenuClient from "./EmptyMenuClient.js";
+import { checkIfProductIsClicked } from "./helper.js";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 export default function Menu() {
   // State
-  const { menu, isModeAdmin, handleDelete, resetMenu, setproductSelected, } = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected } = useContext(OrderContext);
   //comportements
   //affichage
   if (menu.length === 0) {
@@ -39,7 +40,8 @@ export default function Menu() {
             onDelete={() => handleDelete(id)}
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
-            isSelected={true}
+            // isSelected = {id === productSelected.id}
+            isSelected={checkIfProductIsClicked(id, productSelected.id)}
           />
         );
       })}
