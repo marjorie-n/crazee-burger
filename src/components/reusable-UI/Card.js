@@ -17,7 +17,7 @@ export default function Card({
     <CardStyled className="produit" onClick={onClick} isHoverable={isHoverable} isSelected={isSelected}>
       < div className="card">
         {hasDeletbutton && (
-          <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
+          <button className="delete-button" aria-label="delete-button" onClick={onDelete} >
             <TiDelete className="icon" />
           </button>
         )}
@@ -29,7 +29,7 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button className="primary-button" label={"Ajouter"} />
+              <Button className="primary-button" label={"Ajouter"} onClick={(e) => { e.stopPropagation(); }} />
             </div>
           </div>
         </div>
