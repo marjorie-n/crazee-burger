@@ -5,7 +5,7 @@ import Main from "./Main/Main.js";
 import { useState } from "react";
 import OrderContext from "../../../context/OrderContext.js";
 import { useParams } from "react-router-dom";
-import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { fakeMenu } from "../../../fakeData/fakeMenu.js";
 import { EMPTY_PRODUCT } from "../../../enums/product.js";
 import { deepClone } from "../../../utils/array.js";
 
