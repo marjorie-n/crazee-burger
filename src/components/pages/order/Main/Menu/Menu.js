@@ -21,6 +21,7 @@ export default function Menu() {
     // return < EmptyMenuAdmin onReset={resetMenu} />
   }
   const handleClick = (idproductClickedOn) => {
+    if(!isModeAdmin) return; //si on est en mode client, sors de la fonction. 
     // console.log("idproductSelected:", idproductSelected);
     // Dans le menu, trouve le produit dont id est égal à id produit sélectionné
     const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
