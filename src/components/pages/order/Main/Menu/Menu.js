@@ -11,7 +11,7 @@ import { checkIfProductIsClicked } from "./helper.js";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 export default function Menu() {
   // State
-  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected } = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected, setIsCollapsed, setCurrentTabSelected } = useContext(OrderContext);
   //comportements
   //affichage
   if (menu.length === 0) {
@@ -22,8 +22,9 @@ export default function Menu() {
   }
   const handleClick = (idproductClickedOn) => {
     if(!isModeAdmin) return; //si on est en mode client, sors de la fonction. 
-    // console.log("idproductSelected:", idproductSelected);
-    // Dans le menu, trouve le produit dont id est égal à id produit sélectionné
+    setIsCollapsed(false);//ouvre le menu panel
+    setCurrentTabSelected("edit"); //affiche le formulaire d'édition
+    // Dans le menu, trouve le produit dont id est égal à id produit 
     const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
     // console.log("productSelected:", productSelected);
     setproductSelected(productClickedOn);
