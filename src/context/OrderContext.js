@@ -17,4 +17,5 @@ export default createContext({
   setNewProduct: () => { },
   productSelected: {},
   setproductSelected: () => { },
+  titleEditfRef: {},
 });

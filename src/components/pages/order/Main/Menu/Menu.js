@@ -11,7 +11,7 @@ import { checkIfProductIsClicked } from "./helper.js";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 export default function Menu() {
   // State
-  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected, setIsCollapsed, setCurrentTabSelected } = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected, setIsCollapsed, setCurrentTabSelected, titleEditfRef } = useContext(OrderContext);
   //comportements
   //affichage
   if (menu.length === 0) {
@@ -20,16 +20,16 @@ export default function Menu() {
     // if(!isModeAdmin) return <EmptyMenuClient/>
     // return < EmptyMenuAdmin onReset={resetMenu} />
   }
-  const handleClick = (idproductClickedOn) => {
-    if(!isModeAdmin) return; //si on est en mode client, sors de la fonction. 
-    setIsCollapsed(false);//ouvre le menu panel
-    setCurrentTabSelected("edit"); //affiche le formulaire d'édition
+  const handleClick = async (idproductClickedOn) => {
+    if (!isModeAdmin) return; //si on est en mode client, sors de la fonction. 
+    await setIsCollapsed(false);//ouvre le menu panel
+    await setCurrentTabSelected("edit"); //affiche le formulaire d'édition
     // Dans le menu, trouve le produit dont id est égal à id produit 
     const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
-    // console.log("productSelected:", productSelected);
-    setproductSelected(productClickedOn);
+    await setproductSelected(productClickedOn);
+    titleEditfRef.current.focus();
   };
-  const handleCardDelete = (e, idProductToDelete) => { 
+  const handleCardDelete = (e, idProductToDelete) => {
     e.stopPropagation();
     handleDelete(idProductToDelete);
   }

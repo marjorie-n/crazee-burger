@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Navbar from "./Navbar/Navbar.js";
 import { theme } from "../../../theme/index.js";
 import Main from "./Main/Main.js";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext.js";
 import { useParams } from "react-router-dom";
 import { fakeMenu } from "../../../fakeData/fakeMenu.js";
@@ -20,6 +20,7 @@ export default function OrderPage() {
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
+  const titleEditfRef = useRef();
 
   // comportements (gestionnaire de state)
   const handleAdd = (newProduct) => {
@@ -79,6 +80,7 @@ export default function OrderPage() {
     productSelected,
     setproductSelected,
     handleEdit,
+    titleEditfRef
     
   };
 
