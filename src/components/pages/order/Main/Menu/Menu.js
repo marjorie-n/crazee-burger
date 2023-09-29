@@ -7,6 +7,7 @@ import OrderContext from "../../../../../context/OrderContext.js";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.js";
 import EmptyMenuClient from "./EmptyMenuClient.js";
 import { checkIfProductIsClicked } from "./helper.js";
+import { EMPTY_PRODUCT } from "../../../../../enums/product.js";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 export default function Menu() {
@@ -32,6 +33,7 @@ export default function Menu() {
   const handleCardDelete = (e, idProductToDelete) => {
     e.stopPropagation();
     handleDelete(idProductToDelete);
+    idProductToDelete === productSelected.id && setproductSelected(EMPTY_PRODUCT);
   }
   return (
     <MenuStyled className="menu">
