@@ -6,6 +6,7 @@ import OrderContext from "../../../../../../context/OrderContext.js";
 import ImagePreview from "./ImagePreview.js";
 import TextInput from "../../../../../reusable-UI/TextInput.js";
 import { getInputTextsConfig } from "./getInputTextsConfig.js";
+import EditInfoMessage from "./EditInfoMessage.js";
 export default function EditForm() {
   //state
   const {
@@ -44,12 +45,7 @@ export default function EditForm() {
         ))}
       </div>
       <div className="submit">
-        <span className="sentence">
-          Cliquer sur un produit du menu pour le modifier{""}
-        </span>
-        <span className="live-update">
-          en temps réel
-        </span>
+        <EditInfoMessage />
       </div>
     </EditFormStyled>
   )
@@ -79,13 +75,7 @@ const EditFormStyled = styled.div`
     position: relative;
     top: 3px;
   }
-  .sentence {
-    color: ${theme.colors.primary};
-    font-size: ${theme.fonts.size.M};
-    .live-update {
-      text-decoration: underline;    
-    }
-  }
+  
   }
   
 `;
