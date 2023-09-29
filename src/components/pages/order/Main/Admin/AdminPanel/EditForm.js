@@ -8,11 +8,11 @@ import TextInput from "../../../../../reusable-UI/TextInput.js";
 import { getInputTextsConfig } from "./getInputTextsConfig.js";
 export default function EditForm() {
   //state
-  const { 
-    productSelected, 
-    setproductSelected, 
-    handleEdit, 
-    titleEditfRef 
+  const {
+    productSelected,
+    setproductSelected,
+    handleEdit,
+    titleEditfRef
   } = useContext(OrderContext);
 
   const inputTexts = getInputTextsConfig(productSelected);
@@ -39,26 +39,54 @@ export default function EditForm() {
             name={input.name}
             onChange={handleChange}
             version={input.version}
-            ref= {input.name === "title" ? titleEditfRef : null}
+            ref={input.name === "title" ? titleEditfRef : null}
           />
         ))}
-  
+
       </div>
       <div className="submit">
+        <span className="sentence">
+          Cliquer sur un produit du menu pour le modifier{""}
+        </span>
+        <span className="live-update">
+          en temps réel
+        </span>
       </div>
     </EditFormStyled>
   )
 }
 const EditFormStyled = styled.div`
-  display: flex;
-  align-items: center;
-  font-family: ${theme.fonts.family.stylish};
-  font-size: ${theme.fonts.size.P3};
-  color: ${theme.colors.greyBlue};
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(4, 1fr);
+  height: 100%;
+  width: 70%;
+  grid-column-gap: 20px;
+  grid-row-gap: 8px;
   position: relative;
   top: 50px;
   span {
     margin-right: 10px;
+  }
+  .input-fields {
+    gris-area:1/ 2/ -2/ 3;
+    display: grid;
+    grid-row-gap: 8px;
+  }
+  .submit {
+    gris-area:4/ -2/ -1/ -1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 3px;
+  }
+  .sentence {
+    color: ${theme.colors.primary};
+    font-size: ${theme.fonts.size.M};
+    .live-update {
+      text-decoration: underline;    
+    }
+  }
   }
   
 `;
