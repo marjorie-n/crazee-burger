@@ -36,13 +36,12 @@ export default function EditForm() {
           <TextInput
             {...input}
             key={input.id}
-            name={input.name}
+            // name={input.name}
             onChange={handleChange}
-            version={input.version}
+            version="minimalist"
             ref={input.name === "title" ? titleEditfRef : null}
           />
         ))}
-
       </div>
       <div className="submit">
         <span className="sentence">
