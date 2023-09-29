@@ -1,5 +1,4 @@
 // import { HiCursorClick } from "react-icons/hi";
-import { theme } from "../../../../../../theme/index.js";
 import styled from "styled-components";
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext.js";
