@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext.js";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 import AdminForm from "./AdminForm.js";
+import Button from "../../../../../reusable-UI/Button";
+import SubmitMessage from "./SubmitMessage.js";
 
 export default function AddForm() {
   //state
   const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
-  const [isSubmitted,setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   // comportements
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +46,17 @@ export default function AddForm() {
       onSubmit={handleSubmit}
       onChange={handleChange}
       isSubmitted={isSubmitted}
+      children={
+        <>
+          <Button
+            className="submit-button"
+            type="submit"
+            label={"Ajouter un nouveau produit au menu"}
+            version="success"
+          >
+            {isSubmitted && <SubmitMessage />}
+          </Button>
+        </>}
     />
-  )
-};
+  );
+}

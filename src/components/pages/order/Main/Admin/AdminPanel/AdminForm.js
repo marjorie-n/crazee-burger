@@ -3,7 +3,6 @@ import styled from "styled-components"
 import TextInput from "../../../../../reusable-UI/TextInput"
 import ImagePreview from "./ImagePreview"
 import { getInputTextsConfig } from "./getInputTextsConfig"
-
 const AdminForm = React.forwardRef(({ product, onSubmit, onChange, children }, ref) => {
   // state (vide)
 
@@ -26,7 +25,7 @@ const AdminForm = React.forwardRef(({ product, onSubmit, onChange, children }, r
           />
         ))}
       </div>
-      <div className="form-footer">{children}</div>
+      <div className="submit">{children}</div>
     </AdminFormStyled>
   )
 })
@@ -42,7 +41,6 @@ const AdminFormStyled = styled.form`
   width: 70%;
   grid-column-gap: 20px;
   grid-row-gap: 8px;
-
   .input-fields {
     /* background: blue; */
     grid-area: 1 / 2 / -2 / 3;
@@ -50,8 +48,7 @@ const AdminFormStyled = styled.form`
     display: grid;
     grid-row-gap: 8px;
   }
-
-  .form-footer {
+  .submit {
     /* background: green; */
     grid-area: 4 / -2 / -1 / -1;
     display: flex;
