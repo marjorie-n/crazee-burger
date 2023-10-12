@@ -11,7 +11,11 @@ export default createContext({
   menu: [],
   handleAdd: () => { },
   handleDelete: () => { },
+  handleEdit: () => { },
   resetMenu: () => { },
   newProduct: {},
   setNewProduct: () => { },
+  productSelected: {},
+  setproductSelected: () => { },
+  titleEditfRef: {},
 });
