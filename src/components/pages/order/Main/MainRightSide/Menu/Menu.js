@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../../../../../theme/index.js";
-import Card from "../../../../reusable-UI/Card.js";
-import { formatPrice } from "../../../../../utils/maths.js";
-import OrderContext from "../../../../../context/OrderContext.js";
-import EmptyMenuAdmin from "./EmptyMenuAdmin.js";
-import EmptyMenuClient from "./EmptyMenuClient.js";
-import { checkIfProductIsClicked } from "./helper.js";
-import { EMPTY_PRODUCT } from "../../../../../enums/product.js";
+import { theme } from "../../../../../../theme";
+import Card from "../../../../../reusable-UI/Card";
+import { formatPrice } from "../../../../../../utils/maths";
+import OrderContext from "../../../../../../context/OrderContext";
+import EmptyMenuAdmin from "./EmptyMenuAdmin";
+import EmptyMenuClient from "./EmptyMenuClient";
+import { checkIfProductIsClicked } from "./helper";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 export default function Menu() {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Button from "../../../../reusable-UI/Button.js";
-import { theme } from "../../../../../theme/index.js";
+import Button from "../../../../../reusable-UI/Button";
+import { theme } from "../../../../../../theme";
 
 export default function EmptyMenuAdmin({ onReset }) {
   return (
