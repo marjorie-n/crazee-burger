@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme/index.js";
-import MainRightSide from "./MainRightSide/MainRightSide.js";
-import Basket from "./Basket/Basket";
+import Menu from "./Menu/Menu.js";
+import Admin from "./Admin/Admin.js";
+import OrderContext from "../../../../context/OrderContext.js";
+import { useContext } from "react";
 export default function Main() {
+  const { isModeAdmin } = useContext(OrderContext);
   return (
-    <MainStyled>
-        <Basket/>
-        <MainRightSide />
+    <MainStyled className="main">
+      <div className="menu-and-admin">
+        <Menu />
+        {/* conditional rendering */}
+        {isModeAdmin && <Admin />}
+      </div>
     </MainStyled>
   );
 }
@@ -20,8 +26,7 @@ const MainStyled = styled.div`
   box-shadow: ${theme.shadows.strong};
 
   display: grid;
-  grid-template-columns: 25% 1fr;
-  overflow: hidden;
+  grid-template-columns: 1fr;
   .menu-and-admin {
     position: relative;
     display: grid;
