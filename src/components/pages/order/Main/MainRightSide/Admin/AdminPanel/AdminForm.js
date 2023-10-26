@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import TextInput from "../../../../../reusable-UI/TextInput"
+import TextInput from "../../../../../../reusable-UI/TextInput"
 import ImagePreview from "./ImagePreview"
 import { getInputTextsConfig } from "./getInputTextsConfig"
 const AdminForm = React.forwardRef(({ product, onSubmit, onChange, children }, ref) => {

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import OrderContext from "../../../../../../context/OrderContext.js";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
+import OrderContext from "../../../../../../../context/OrderContext";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import AdminForm from "./AdminForm.js";
 import SubmitButton from "./SubmitButton.js";
 
