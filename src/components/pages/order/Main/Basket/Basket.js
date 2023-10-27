@@ -20,10 +20,12 @@ const BasketStyled = styled.div`
     background: ${theme.colors.background_dark};
   }
   .body{
-    background: green;
+    flex: 1;
+    background: ${theme.colors.background_white};
   }
   .foot {
-    background: red;
+    height: 70px;
+    background: ${theme.colors.background_dark};
   }
   
 `
