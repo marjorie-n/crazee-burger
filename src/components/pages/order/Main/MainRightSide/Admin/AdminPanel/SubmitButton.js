@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../../../../../reusable-UI/Button.js'
+import Button from '../../../../../../reusable-UI/Button'
 import SubmitMessage from './SubmitMessage.js'
 
 export default function SubmitButton({ isSubmitted }) {

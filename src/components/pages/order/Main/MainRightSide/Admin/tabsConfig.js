@@ -1,17 +1,9 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
-<<<<<<< HEAD
-import AddForm from "../AdminPanel/AddForm";
-=======
-import AddForm from "./AdminPanel/AddForm.js";
-<<<<<<< HEAD:src/components/pages/order/Main/MainRightSide/Admin/tabsConfig.js
->>>>>>> 849b697a96b2b000868459b6157ab2fd20fedd83
-import EditForm from "../AdminPanel/EditForm.js"
-import HintMessage from "../AdminPanel/HintMessage.js"
-=======
-import EditForm from "./AdminPanel/EditForm.js"
+import AddForm from "./AdminPanel/AddForm"; 
+import EditForm from "./AdminPanel/EditForm"
 import HintMessage from "./AdminPanel/HintMessage"
->>>>>>> parent of 849b697 (♻️ F09: MAIN > Store architecture files and create Basket folder):src/components/pages/order/Main/Admin/tabsConfig.js
+
 export const getTabsConfig = (hasAlreadyBeenClicked) => [
   {
     index: "add",

@@ -1,13 +1,14 @@
-import { useContext, useState } from "react";
-import OrderContext from "../../../../../../context/OrderContext.js";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
+import { useContext } from "react";
+import OrderContext from "../../../../../../../context/OrderContext";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import AdminForm from "./AdminForm.js";
 import SubmitButton from "./SubmitButton.js";
+import {useDisplayMessage} from "../../../../../../../hooks/useDisplayMessage.js";
 
 export default function AddForm() {
   //state
   const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { displayMessage, isSubmitted } = useDisplayMessage();
   // comportements
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,13 +19,6 @@ export default function AddForm() {
     handleAdd(AddProcduct);
     setNewProduct(EMPTY_PRODUCT); //vider le state apres l'ajout du produit
     displayMessage();
-  };
-
-  const displayMessage = () => {
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 2000);
   };
 
   const handleChange = (e) => {
