@@ -5,64 +5,19 @@ import Main from "./Main/Main.js";
 import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext.js";
 import { useParams } from "react-router-dom";
-import { fakeMenu } from "../../../fakeData/fakeMenu.js";
 import { EMPTY_PRODUCT } from "../../../enums/product.js";
-import { deepClone } from "../../../utils/array.js";
+import { useMenu } from "../../../hooks/useMenu";
 
 export default function OrderPage() {
   // State
   const { username } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  // const [isAddSelected, setIsAddSelected] = useState(true);
-  // const [isEditSelected, setIsEditSelected] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
   const titleEditfRef = useRef();
-
-  // comportements (gestionnaire de state)
-  const handleAdd = (newProduct) => {
-    // 1. copie du tableau
-    const menuCopy = deepClone(menu);
-    // 2. manip du tableau
-    const menuUpdated = [...menuCopy, newProduct];
-    // 3. mise à jour du state
-    console.log(menuUpdated);
-    setMenu(menuUpdated);
-  };
-
-  const handleDelete = (idOfProductToDelete) => {
-    // alert(idOfProductToDelete);
-    //copie du state
-    const menuCopy = deepClone(menu);
-    // manip du state
-    const menuUpdated = menuCopy.filter(
-      (product) => product.id !== idOfProductToDelete
-    );
-
-    // mise à jour du state
-    setMenu(menuUpdated);
-  };
-
-  const handleEdit = (productToEdit) => {
-    //@TODO: find a clearer implementation
-    console.log("productToEdit:", productToEdit);
-    // 1. copie du state
-    const menuCopy = deepClone(menu);
-    // 2. manip du state
-    const indexOfProductToEdit = menu.findIndex(
-      (product) => product.id === productToEdit.id)
-    console.log("indexOfProductToEdit:", indexOfProductToEdit);
-    menuCopy[indexOfProductToEdit] = productToEdit;
-    // 3. mise à jour du state
-    setMenu(menuCopy);
-  }
-
-  const resetMenu = () => {
-    setMenu(fakeMenu.MEDIUM);
-  }
+  const { menu, resetMenu, handleAdd, handleDelete, handleEdit } = useMenu();
 
   const orderContextValue = {
     isModeAdmin,
@@ -81,7 +36,7 @@ export default function OrderPage() {
     setproductSelected,
     handleEdit,
     titleEditfRef
-    
+
   };
 
   return (
