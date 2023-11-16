@@ -26,5 +26,4 @@ box-shadow: ${theme.shadows.basket};
     font-family: ${theme.fonts.family.stylish};
     color: ${theme.colors.greyBlue};
 }
-  
 `;
