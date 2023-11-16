@@ -8,25 +8,25 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT, IMAGE_COMING_SOON } from "../../../../../../enums/product";
+import { findInArray } from "../../../../../../utils/array.js";
 
 
 export default function Menu() {
   // State
-  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected, setIsCollapsed, setCurrentTabSelected, titleEditfRef } = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected, setIsCollapsed, setCurrentTabSelected, titleEditfRef,handleAddToBasket } = useContext(OrderContext);
   //comportements
   //affichage
   if (menu.length === 0) {
     const controlMenu = isModeAdmin ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />;
     return controlMenu;
-    // if(!isModeAdmin) return <EmptyMenuClient/>
-    // return < EmptyMenuAdmin onReset={resetMenu} />
   }
   const handleClick = async (idproductClickedOn) => {
     if (!isModeAdmin) return; //si on est en mode client, sors de la fonction. 
     await setIsCollapsed(false);//ouvre le menu panel
     await setCurrentTabSelected("edit"); //affiche le formulaire d'édition
     // Dans le menu, trouve le produit dont id est égal à id produit 
-    const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
+    // const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
+    const productClickedOn = findInArray(idproductClickedOn,menu)
     await setproductSelected(productClickedOn);
     titleEditfRef.current.focus();
   };
@@ -35,6 +35,14 @@ export default function Menu() {
     handleDelete(idProductToDelete);
     idProductToDelete === productSelected.id && setproductSelected(EMPTY_PRODUCT);
   }
+  const handleAddToButton = (e, idProductToAdd) => {
+    e.stopPropagation();
+    // const productToAdd = menu.find((menuProduct) => menuProduct.id === idProductToAdd);
+    const productToAdd = findInArray(idProductToAdd,menu)
+     console.log("product to add",productToAdd);
+    handleAddToBasket(productToAdd);
+  }
+
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, title, imageSource, price }) => {
@@ -50,6 +58,7 @@ export default function Menu() {
             isHoverable={isModeAdmin}
             // isSelected = {id === productSelected.id}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
+            onAdd={(e) => handleAddToButton(e, id)}
           />
         );
       })}
