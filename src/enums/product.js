@@ -5,3 +5,5 @@ export const EMPTY_PRODUCT = Object.freeze({ // Object.freeze() permet de rendre
   price: 0,
 
 });
+
+export const IMAGE_COMING_SOON = "/images/coming-soon.png";
