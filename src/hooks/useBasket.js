@@ -5,27 +5,37 @@ import { deepClone, find } from "../utils/array.js"
 export const useBasket = () => {
     const [basket, setBasket] = useState(fakeBasket.SMALL)
     const handleAddToBasket = (productToAdd) => {
-        console.log("product to add", productToAdd);
-        //copie du state
+        // copy to the state
         const basketCopy = deepClone(basket);
+
         const isProductAlreadyInBasket = find(productToAdd.id, basketCopy) !== undefined;
-        console.log("isProductAlreadyInBasket:", isProductAlreadyInBasket);
-        // manip de la copie du state
-        //si le produit n'est pas dans le panier, on l'ajoute
+        console.log('isProductAlreadyInBasket', isProductAlreadyInBasket);
+        // manipulate the state
         if (!isProductAlreadyInBasket) {
             const newBasketProduct = {
                 ...productToAdd,
                 quantity: 1
-            }
+            };
             const basketUpdated = [newBasketProduct, ...basketCopy];
-            console.log("basketUpdated", basketUpdated);
-            //mise à jour du state
+            // update the state
             setBasket(basketUpdated);
-            return;
+        } else {
+            const indexOfBasketProductToIncrement = basket.findIndex(
+                (product) => product.id === productToAdd.id
+            );
+            console.log('indexOfBasketProductToIncrement', indexOfBasketProductToIncrement);
+            basketCopy[indexOfBasketProductToIncrement].quantity++;
+            console.log('basketUpdated', basket);
+
+            // update the state
+            setBasket([...basketCopy]);
         }
     }
+
     return {
         basket,
         handleAddToBasket
-    }
+    };
 }
+
+
