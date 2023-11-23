@@ -8,7 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT, IMAGE_COMING_SOON } from "../../../../../../enums/product";
-import { findInArray } from "../../../../../../utils/array.js";
+import { find } from "../../../../../../utils/array.js";
 
 
 export default function Menu() {
@@ -26,7 +26,7 @@ export default function Menu() {
     await setCurrentTabSelected("edit"); //affiche le formulaire d'édition
     // Dans le menu, trouve le produit dont id est égal à id produit 
     // const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
-    const productClickedOn = findInArray(idproductClickedOn,menu)
+    const productClickedOn = find(idproductClickedOn,menu)
     await setproductSelected(productClickedOn);
     titleEditfRef.current.focus();
   };
@@ -38,7 +38,7 @@ export default function Menu() {
   const handleAddToButton = (e, idProductToAdd) => {
     e.stopPropagation();
     // const productToAdd = menu.find((menuProduct) => menuProduct.id === idProductToAdd);
-    const productToAdd = findInArray(idProductToAdd,menu)
+    const productToAdd = find(idProductToAdd,menu)
      console.log("product to add",productToAdd);
     handleAddToBasket(productToAdd);
   }
