@@ -1,10 +1,15 @@
 export const deepClone = (array) => {
     return JSON.parse(JSON.stringify(array));
 }
-export const find = (id,array) => { 
+export const find = (id, array) => {
     return array.find((itemInArray) => itemInArray.id === id);
+}
 
- }
+export const findIndex = (id, array) => {
+    return array.findIndex(
+        itemInArray => itemInArray.id === id)
+}
+
 //test for OrderPage functions
 // const fruits = [
 //     {
