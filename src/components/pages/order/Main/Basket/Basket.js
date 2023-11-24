@@ -8,17 +8,21 @@ import EmptyBasket from "./EmptyBasket.js"
 import BasketProducts from "./BasketProducts.js"
 import { theme } from "../../../../../theme"
 
+
 export default function Basket() {
-  const { basket } = useContext(OrderContext)
-  const isBasketEmpty = basket.length === 0;
-  const sumToPay = basket.reduce((acc, product) => 
-    acc += product.price * product.quantity, 0)
-  console.log("sumToPay",sumToPay)
+  const { basket, isModeAdmin } = useContext(OrderContext) // Get the basket from the OrderContext
+  const isBasketEmpty = basket.length === 0; // Check if the basket is empty
+  const sumToPay = basket.reduce((acc, product) => { 
+    // Calculate the total amount to pay if the basket is not empty and the product price is not 0 and NaN
+    if (!isNaN(product.price) && product.price !== 0)
+      return acc += product.price * product.quantity
+    return acc
+  }, 0)
   return (
-    <BasketStyled>
-      <Total amountTopay={formatPrice(sumToPay)} />
-      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} />}
-      <Footer />
+    <BasketStyled> 
+      <Total amountTopay={formatPrice(sumToPay)} /> 
+      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} isModeAdmin={isModeAdmin}/>} 
+      <Footer /> 
     </BasketStyled>
   )
 }
