@@ -11,9 +11,12 @@ import { theme } from "../../../../../theme"
 export default function Basket() {
   const { basket } = useContext(OrderContext)
   const isBasketEmpty = basket.length === 0;
+  const sumToPay = basket.reduce((acc, product) => 
+    acc += product.price * product.quantity, 0)
+  console.log("sumToPay",sumToPay)
   return (
     <BasketStyled>
-      <Total amountTopay={formatPrice(0)} />
+      <Total amountTopay={formatPrice(sumToPay)} />
       {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} />}
       <Footer />
     </BasketStyled>
@@ -27,12 +30,10 @@ const BasketStyled = styled.div`
   flex-direction: column;
   border-bottom-left-radius: ${theme.borderRadius.round};
   height: 85vh;
-
   .head {
     position: sticky;
     top: 0;
   }
-
   .footer {
     border-bottom-left-radius: ${theme.borderRadius.extraRound};
     position: sticky;
