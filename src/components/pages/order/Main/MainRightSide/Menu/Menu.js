@@ -13,7 +13,19 @@ import { find } from "../../../../../../utils/array.js";
 
 export default function Menu() {
   // State
-  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected, setIsCollapsed, setCurrentTabSelected, titleEditfRef,handleAddToBasket } = useContext(OrderContext);
+  const { 
+    menu, 
+    isModeAdmin, 
+    handleDelete, 
+    resetMenu, 
+    productSelected, 
+    setproductSelected, 
+    setIsCollapsed, 
+    setCurrentTabSelected, 
+    titleEditfRef,
+    handleAddToBasket,
+    handleDeleteBasketProduct
+   } = useContext(OrderContext);
   //comportements
   //affichage
   if (menu.length === 0) {
@@ -33,6 +45,7 @@ export default function Menu() {
   const handleCardDelete = (e, idProductToDelete) => {
     e.stopPropagation();
     handleDelete(idProductToDelete);
+    handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id && setproductSelected(EMPTY_PRODUCT);
   }
   const handleAddToButton = (e, idProductToAdd) => {
