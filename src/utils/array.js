@@ -10,6 +10,11 @@ export const findIndex = (id, array) => {
         itemInArray => itemInArray.id === id)
 }
 
+export const filter = (id, array) => {
+    return array.filter(
+        itemInArray => itemInArray.id !== id)
+}
+
 //test for OrderPage functions
 // const fruits = [
 //     {

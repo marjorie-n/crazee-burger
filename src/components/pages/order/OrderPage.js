@@ -19,7 +19,7 @@ export default function OrderPage() {
   const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
   const titleEditfRef = useRef();
   const { menu, resetMenu, handleAdd, handleDelete, handleEdit } = useMenu();
-  const {basket, handleAddToBasket} = useBasket();
+  const {basket, handleAddToBasket, handleDeleteBasketProduct} = useBasket();
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -38,7 +38,8 @@ export default function OrderPage() {
     handleEdit,
     titleEditfRef,
     basket,
-    handleAddToBasket
+    handleAddToBasket,
+    handleDeleteBasketProduct,
 
   };
 
