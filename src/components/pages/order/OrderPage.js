@@ -7,6 +7,7 @@ import OrderContext from "../../../context/OrderContext.js";
 import { useParams } from "react-router-dom";
 import { EMPTY_PRODUCT } from "../../../enums/product.js";
 import { useMenu } from "../../../hooks/useMenu";
+import { useBasket } from "../../../hooks/useBasket.js";
 
 export default function OrderPage() {
   // State
@@ -18,7 +19,7 @@ export default function OrderPage() {
   const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
   const titleEditfRef = useRef();
   const { menu, resetMenu, handleAdd, handleDelete, handleEdit } = useMenu();
-
+  const {basket, handleAddToBasket, handleDeleteBasketProduct} = useBasket();
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -35,7 +36,10 @@ export default function OrderPage() {
     productSelected,
     setproductSelected,
     handleEdit,
-    titleEditfRef
+    titleEditfRef,
+    basket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
 
   };
 

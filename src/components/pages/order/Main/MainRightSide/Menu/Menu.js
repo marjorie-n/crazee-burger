@@ -7,34 +7,55 @@ import OrderContext from "../../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import { EMPTY_PRODUCT, IMAGE_COMING_SOON } from "../../../../../../enums/product";
+import { find } from "../../../../../../utils/array.js";
 
-const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+
 export default function Menu() {
   // State
-  const { menu, isModeAdmin, handleDelete, resetMenu, productSelected, setproductSelected, setIsCollapsed, setCurrentTabSelected, titleEditfRef } = useContext(OrderContext);
+  const { 
+    menu, 
+    isModeAdmin, 
+    handleDelete, 
+    resetMenu, 
+    productSelected, 
+    setproductSelected, 
+    setIsCollapsed, 
+    setCurrentTabSelected, 
+    titleEditfRef,
+    handleAddToBasket,
+    handleDeleteBasketProduct
+   } = useContext(OrderContext);
   //comportements
   //affichage
   if (menu.length === 0) {
     const controlMenu = isModeAdmin ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />;
     return controlMenu;
-    // if(!isModeAdmin) return <EmptyMenuClient/>
-    // return < EmptyMenuAdmin onReset={resetMenu} />
   }
   const handleClick = async (idproductClickedOn) => {
     if (!isModeAdmin) return; //si on est en mode client, sors de la fonction. 
     await setIsCollapsed(false);//ouvre le menu panel
     await setCurrentTabSelected("edit"); //affiche le formulaire d'édition
     // Dans le menu, trouve le produit dont id est égal à id produit 
-    const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
+    // const productClickedOn = menu.find((product) => product.id === idproductClickedOn);
+    const productClickedOn = find(idproductClickedOn,menu)
     await setproductSelected(productClickedOn);
     titleEditfRef.current.focus();
   };
   const handleCardDelete = (e, idProductToDelete) => {
     e.stopPropagation();
     handleDelete(idProductToDelete);
+    handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id && setproductSelected(EMPTY_PRODUCT);
   }
+  const handleAddToButton = (e, idProductToAdd) => {
+    e.stopPropagation();
+    // const productToAdd = menu.find((menuProduct) => menuProduct.id === idProductToAdd);
+    const productToAdd = find(idProductToAdd,menu)
+     console.log("product to add",productToAdd);
+    handleAddToBasket(productToAdd);
+  }
+
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, title, imageSource, price }) => {
@@ -42,7 +63,7 @@ export default function Menu() {
           <Card
             key={id}
             title={title}
-            imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+            imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
             leftDescription={formatPrice(price)}
             hasDeletbutton={isModeAdmin}
             onDelete={(e) => handleCardDelete(e, id)}
@@ -50,6 +71,7 @@ export default function Menu() {
             isHoverable={isModeAdmin}
             // isSelected = {id === productSelected.id}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
+            onAdd={(e) => handleAddToButton(e, id)}
           />
         );
       })}
@@ -58,14 +80,14 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
-  background: ${theme.colors.background_white};
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-row-gap: 60px;
-  padding: 50px 50px 150px;
-  justify-items: center;
-  box-shadow: ${theme.shadows.strong};
-  overflow-y: scroll;
-  border-bottom-left-radius: ${theme.borderRadius.extraRound};
-  border-bottom-right-radius: ${theme.borderRadius.extraRound};
+background: ${theme.colors.background_white};
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+/* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+grid-row-gap: 60px;
+padding: 50px 50px 150px;
+justify-items: center;
+box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+scrollbar-width: thin;
+scrollbar-color: red;
 `;
